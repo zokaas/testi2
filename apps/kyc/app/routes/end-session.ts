@@ -1,5 +1,5 @@
 // app/routes/api/end-session.ts
-import { ActionFunction, json } from "@remix-run/node";
+import { ActionFunction, json } from "react-router";
 import { endSession } from "~/services/sessionProvider.server";
 import { getSessionData } from "~/services/sessionStorage.server";
 

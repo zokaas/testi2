@@ -1,5 +1,5 @@
 import React from "react";
-import { LoaderFunction } from "@remix-run/node";
+import { LoaderFunction } from "react-router";
 import { Container } from "@ui-components/index";
 
 export const loader: LoaderFunction = async () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "react-router";
 import { T_GetFormResponse } from "~/types";
 import { Button } from "@ui-components/index";
 import { T_FormButtons } from "./formButtonsTypes";

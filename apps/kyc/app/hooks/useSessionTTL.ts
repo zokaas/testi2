@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "@remix-run/react";
+import { useNavigate } from "react-router";
 
 export const useSessionTTL = (ttl: number | undefined) => {
     const navigate = useNavigate();

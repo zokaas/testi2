@@ -1,4 +1,4 @@
-import { LoaderFunction, redirect } from "@remix-run/node";
+import { LoaderFunction, redirect } from "react-router";
 import React from "react";
 import { mockSessionParams } from "mock/sessionMock";
 import { saveSession } from "~/services/sessionStorage.server";

@@ -1,6 +1,6 @@
 import React from "react";
-import { ActionFunction, LoaderFunction, redirect, json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { ActionFunction, LoaderFunction, redirect, json } from "react-router";
+import { useLoaderData } from "react-router";
 
 import { endOwnSession, getSessionData } from "~/services/sessionStorage.server";
 import { endSession, getUserInfo, verifySession } from "~/services/sessionProvider.server";

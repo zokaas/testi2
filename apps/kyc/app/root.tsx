@@ -8,8 +8,8 @@ import {
     ScrollRestoration,
     useLoaderData,
     useRouteError,
-} from "@remix-run/react";
-import { LinksFunction, LoaderFunction, json } from "@remix-run/node";
+} from "react-router";
+import { LinksFunction, LoaderFunction, json } from "react-router";
 import { SessionProvider } from "~/context/SessionContext";
 import Error from "../components/Error/Error";
 import tailwindStyles from "./global.css?url";

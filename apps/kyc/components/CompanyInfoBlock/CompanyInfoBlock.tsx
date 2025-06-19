@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "react-router";
 import React from "react";
 import { T_CompanyBlock } from "~/types";
 // TODO:Hardcoded translations

@@ -1,5 +1,5 @@
 // _index.tsx
-import { LoaderFunction, redirect } from "@remix-run/node";
+import { LoaderFunction, redirect } from "react-router";
 import { verifySession } from "~/services/sessionProvider.server";
 import { saveSession } from "~/services/sessionStorage.server";
 
