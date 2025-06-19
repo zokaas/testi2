@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { T_Tooltip } from "./tooltipTypes";
 import { faQuestionCircle } from "@awesome.me/kit-60ea292f8c/icons/classic/regular";
 
@@ -13,7 +14,7 @@ const Tooltip: React.FC<T_Tooltip> = ({ content, className = "" }) => {
             onMouseLeave={() => setVisible(false)}
             tabIndex={0}>
             <FontAwesomeIcon
-                icon={faQuestionCircle}
+                icon={faQuestionCircle as IconProp}
                 className="text-black cursor-pointer text-xl"
             />
             {visible && (

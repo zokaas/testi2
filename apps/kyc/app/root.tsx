@@ -8,8 +8,9 @@ import {
     ScrollRestoration,
     useLoaderData,
     useRouteError,
+    LinksFunction,
+    LoaderFunction,
 } from "react-router";
-import { LinksFunction, LoaderFunction, json } from "react-router";
 import { SessionProvider } from "~/context/SessionContext";
 import Error from "../components/Error/Error";
 import tailwindStyles from "./global.css?url";
@@ -17,12 +18,18 @@ import tailwindStyles from "./global.css?url";
 const DEFAULT_THEME = "sweden-b2b-application";
 const DEFAULT_BG_IMAGE = "var(--bg-image)";
 
+// Define the loader data type
+type LoaderData = {
+    theme: string;
+    backgroundImage: string;
+};
+
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: tailwindStyles }];
 
 export const loader: LoaderFunction = async ({ params }) => {
     const productId = params.productId ?? DEFAULT_THEME;
 
-    return json({
+    return Response.json({
         theme: productId,
         backgroundImage: DEFAULT_BG_IMAGE,
     });
@@ -53,10 +60,10 @@ function Document({
 }
 
 export default function App() {
-    const data = useLoaderData<typeof loader>();
+    const data = useLoaderData<LoaderData>();
 
     return (
-        <Document theme={data.theme}>
+        <Document theme={data?.theme || DEFAULT_THEME}>
             <SessionProvider>
                 <Outlet />
             </SessionProvider>

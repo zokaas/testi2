@@ -1,6 +1,5 @@
 import React from "react";
-import { ActionFunction, LoaderFunction, redirect, json } from "react-router";
-import { useLoaderData } from "react-router";
+import { ActionFunction, LoaderFunction, redirect, useLoaderData } from "react-router";
 
 import { endOwnSession, getSessionData } from "~/services/sessionStorage.server";
 import { endSession, getUserInfo, verifySession } from "~/services/sessionProvider.server";
@@ -10,7 +9,7 @@ import { getForm, sendFormData } from "~/services/api";
 import { useSessionTTL } from "~/hooks/useSessionTTL";
 import { parseFormValues } from "~/utils/formUtils";
 import { MultiStepForm } from "components";
-import { T_Payload, T_Question } from "~/types";
+import { T_GetFormResponse, T_Payload, T_Question } from "~/types";
 
 export const loader: LoaderFunction = async ({ request, params }) => {
     const { kycType, productId } = params;
@@ -25,7 +24,7 @@ export const loader: LoaderFunction = async ({ request, params }) => {
             try {
                 const productData = await getForm(productId, kycType, sessionId);
 
-                return json({
+                return Response.json({
                     ...productData,
                     companyName,
                     orgNumber,
@@ -63,7 +62,7 @@ export const action: ActionFunction = async ({ request }) => {
             questions = JSON.parse(questionsStr as string);
         } catch (error) {
             console.error("Error parsing questions:", error);
-            return json({
+            return Response.json({
                 errors: { general: "Invalid form data" },
                 formValues,
             });
@@ -73,7 +72,7 @@ export const action: ActionFunction = async ({ request }) => {
     const validationErrors = validateFormData(formValues, questions, questions.length - 1);
 
     if (validationErrors) {
-        return json({ errors: validationErrors, formValues });
+        return Response.json({ errors: validationErrors, formValues });
     }
 
     let kcUserId = "";
@@ -106,29 +105,32 @@ export const action: ActionFunction = async ({ request }) => {
             await endOwnSession(request);
             await endSession(sessionId, productId);
         }
-        // return json({
-        //     success: status === "ok" ? true : false,
-        //     message,
-        //     storeId: storeId,
-        //     data: mappedPayload,
-        // });
         return redirect("/thank-you");
     } catch (error: unknown) {
         if (error instanceof Error) {
             console.error("API request failed", error.message);
-            return json(
+            return Response.json(
                 { error: error.message || "Internal Server Error" },
                 { status: (error as { status?: number }).status ?? 500 },
             );
         } else {
             console.error("An unknown error occurred");
-            return json({ error: "Unknown error occurred" }, { status: 500 });
+            return Response.json({ error: "Unknown error occurred" }, { status: 500 });
         }
     }
 };
 
+type LoaderData = T_GetFormResponse & {
+    companyName: string;
+    orgNumber: string;
+    ttl: number;
+    productId: string;
+    kycType: string;
+};
+
 const DynamicForm: React.FC = () => {
-    const { ttl } = useLoaderData<typeof loader>();
+    const loaderData = useLoaderData<LoaderData>();
+    const ttl = loaderData?.ttl;
     useSessionTTL(ttl);
 
     return <MultiStepForm />;

@@ -31,7 +31,7 @@ export const MultiStepForm: React.FC = () => {
 
     const validateAndCollectStepValues = () => {
         const currentStepQuestions = questions.filter(
-            (question: T_Question) => question.question.step === currentStepIndex + 1,
+            (question: T_Question) => question.rawData.step === currentStepIndex + 1,
         );
 
         const validationErrors = validateFormData(
@@ -46,7 +46,7 @@ export const MultiStepForm: React.FC = () => {
         }
 
         currentStepQuestions.forEach((question: T_Question) => {
-            const { questionParameter } = question.question;
+            const { questionParameter } = question.rawData;
             if (questionParameter && !formValues[questionParameter]) {
                 formValues[questionParameter] = "";
             }
@@ -87,7 +87,7 @@ export const MultiStepForm: React.FC = () => {
     };
 
     const filteredQuestions = (questions ?? []).filter(
-        (question: T_Question) => question.question.step === currentStepIndex + 1,
+        (question: T_Question) => question.rawData.step === currentStepIndex + 1,
     );
 
     if (isSubmitted) {

@@ -18,9 +18,9 @@ export type T_DependentQuestion = T_DynamicField & {
 
 export type T_Info = T_DynamicField & {
     __component: "kyc.info";
-    componentType?: string;
-    infoHeader?: string;
-    infoDescription?: string;
+    type?: string;
+    labelDescription?: string;
+    labelExplanation?: string;
 };
 
 export type T_BeneficialOwnerConfig = T_DynamicField & {
@@ -57,7 +57,7 @@ export type T_DynamicFields =
     | T_BeneficialOwnerConfig
     | T_CountryOptions;
 
-export type T_ComponentType =
+export type T_QuestionType =
     | "Text"
     | "Textarea"
     | "RadioGroup"
@@ -68,7 +68,7 @@ export type T_ComponentType =
 
 export type T_Question = {
     id: number;
-    question: {
+    rawData: {
         questionLabel: string;
         step: number;
         componentType: string;

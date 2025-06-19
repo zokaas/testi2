@@ -1,9 +1,9 @@
-import { T_Question, T_DependentQuestion, T_ComponentType } from "~/types";
+import { T_Question, T_DependentQuestion, T_QuestionType } from "~/types";
 import { z } from "zod";
 import { beneficialOwnerSchema } from "./beneficialOwnerSchema";
 
 // Create a reusable function for building basic field schemas
-const createFieldSchema = (type: T_ComponentType): z.ZodTypeAny => {
+const createFieldSchema = (type: T_QuestionType): z.ZodTypeAny => {
     switch (type) {
         case "Text":
         case "Textarea":
@@ -64,7 +64,7 @@ const buildDependentSchema = (
     }
 
     // Create the base schema
-    const schema = createFieldSchema(componentType as T_ComponentType);
+    const schema = createFieldSchema(componentType as T_QuestionType);
 
     // Check if the condition is met
     const parentValue = formValues[conditionValue];
@@ -80,7 +80,7 @@ export const buildSchema = (questions: T_Question[], formValues: Record<string, 
     const schemaShape: Record<string, z.ZodTypeAny> = {};
 
     questions.forEach((question) => {
-        const { questionParameter, componentType, dynamicField } = question.question;
+        const { questionParameter, componentType, dynamicField } = question.rawData;
 
         // Validate main question fields
         if (!questionParameter || !componentType) {
@@ -89,7 +89,7 @@ export const buildSchema = (questions: T_Question[], formValues: Record<string, 
         }
 
         // Build schema for main question
-        schemaShape[questionParameter] = createFieldSchema(componentType as T_ComponentType);
+        schemaShape[questionParameter] = createFieldSchema(componentType as T_QuestionType);
 
         // Process dynamic fields if they exist
         if (dynamicField?.length) {

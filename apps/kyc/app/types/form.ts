@@ -2,7 +2,7 @@ import { T_Question } from "~/types/question";
 
 export type T_ProductData = {
     product: string;
-    formType: string;
+    type: string;
     steps: T_FormSteps;
     formHeader: T_FormHeader;
     button: T_ButtonLabels;

@@ -129,7 +129,7 @@ export function processQuestions(
     const [countryListOptions, setCountryListOptions] = useState<T_Country[]>(
         countryList
             ? countryList.map((country) => ({
-                  id: String(country.id),
+                  id: country.id,
                   value: country.name,
               }))
             : [],
@@ -138,7 +138,7 @@ export function processQuestions(
         if (countryList) {
             setCountryListOptions(
                 countryList.map((country) => ({
-                    id: String(country.id),
+                    id: country.id,
                     value: country.name,
                 })),
             );
@@ -153,7 +153,7 @@ export function processQuestions(
             placeholder = "",
             options = [],
             dynamicField = [],
-        } = question.question;
+        } = question.rawData;
 
         const key = questionParameter || question.id.toString();
         const value = formValues[questionParameter] || "";

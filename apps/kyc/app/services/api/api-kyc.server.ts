@@ -44,7 +44,7 @@ export async function getForm(
     return {
         productData: {
             product: response.productData.product,
-            formType: response.productData.formType,
+            type: response.productData.type,
             formHeader: response.productData.formHeader,
             companyBlock: response.productData.companyBlock,
             steps: response.productData.steps,

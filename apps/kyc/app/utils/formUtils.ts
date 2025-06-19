@@ -42,7 +42,7 @@ export const appendFormData = (data: T_FormValues): FormData => {
 };
 
 export const getQuestionsForStep = (questions: T_Question[], stepIndex: number): T_Question[] => {
-    return questions.filter((question: T_Question) => question.question.step === stepIndex + 1);
+    return questions.filter((question: T_Question) => question.rawData.step === stepIndex + 1);
 };
 
 export const initializeFormValues = (
@@ -52,7 +52,7 @@ export const initializeFormValues = (
     const updatedValues = { ...currentValues };
 
     questions.forEach((question: T_Question) => {
-        const { questionParameter } = question.question;
+        const { questionParameter } = question.rawData;
         if (questionParameter && !updatedValues[questionParameter]) {
             updatedValues[questionParameter] = "";
         }

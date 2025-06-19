@@ -15,7 +15,7 @@ export const mockCountryList: T_CountryRecord[] = [
 
 export const mockProductData: T_ProductData = {
     product: "sweden-b2b-application",
-    formType: "onboarding",
+    type: "onboarding",
     steps: {
         step1: "Company",
         step2: "Operations",
@@ -47,7 +47,7 @@ export const mockProductData: T_ProductData = {
     questions: [
         {
             id: 10,
-            question: {
+            rawData: {
                 questionLabel: "Business plan",
                 step: 1,
                 componentType: "Textarea",
@@ -58,7 +58,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 4,
-            question: {
+            rawData: {
                 questionLabel: "Purpose of the loan",
                 step: 1,
                 componentType: "Select",
@@ -80,7 +80,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 6,
-            question: {
+            rawData: {
                 questionLabel: "Please explain more detailed the purpose of the loan",
                 step: 1,
                 componentType: "Textarea",
@@ -91,7 +91,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 8,
-            question: {
+            rawData: {
                 questionLabel: "Describe your business",
                 step: 1,
                 componentType: "Textarea",
@@ -103,7 +103,7 @@ export const mockProductData: T_ProductData = {
 
         {
             id: 12,
-            question: {
+            rawData: {
                 questionLabel: "Does the company operate outside the EU/EEA?",
                 step: 2,
                 componentType: "RadioGroup",
@@ -126,7 +126,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 16,
-            question: {
+            rawData: {
                 questionLabel: "Do you engage in currency exchange?",
                 step: 2,
                 componentType: "RadioGroup",
@@ -138,7 +138,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 18,
-            question: {
+            rawData: {
                 questionLabel: "Are you involved in conversation to cryptocurrency exchange?",
                 step: 2,
                 componentType: "RadioGroup",
@@ -150,7 +150,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 20,
-            question: {
+            rawData: {
                 questionLabel: "Does the company handle cash?",
                 step: 2,
                 componentType: "RadioGroup",
@@ -173,7 +173,7 @@ export const mockProductData: T_ProductData = {
 
         {
             id: 24,
-            question: {
+            rawData: {
                 questionLabel: "Monthly turnover",
                 step: 3,
                 componentType: "Number",
@@ -184,7 +184,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 26,
-            question: {
+            rawData: {
                 questionLabel: "What does the monthly turnover consist of?",
                 step: 3,
                 componentType: "Textarea",
@@ -195,7 +195,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 28,
-            question: {
+            rawData: {
                 questionLabel: "Are you planning on doing extra payments each month?",
                 step: 3,
                 componentType: "RadioGroup",
@@ -217,7 +217,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 32,
-            question: {
+            rawData: {
                 questionLabel: "Who are the beneficial owners of the company?",
                 step: 3,
                 componentType: "BeneficialOwner",
@@ -251,7 +251,7 @@ export const mockProductData: T_ProductData = {
         },
         {
             id: 3,
-            question: {
+            rawData: {
                 questionLabel: "Are you a PEP or RCA?",
                 step: 3,
                 componentType: "RadioGroup",
@@ -262,9 +262,9 @@ export const mockProductData: T_ProductData = {
                     {
                         id: "1",
                         __component: "kyc.info",
-                        componentType: "tooltip",
-                        infoHeader: "PEP/RCA Information",
-                        infoDescription:
+                        type: "tooltip",
+                        labelDescription: "PEP/RCA Information",
+                        labelExplanation:
                             "Politically Exposed Persons (PEP) and Relatives and Close Associates (RCA) are individuals in public positions of power.",
                     },
                 ],

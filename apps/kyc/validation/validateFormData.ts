@@ -9,7 +9,7 @@ export const validateFormData = (
     currentStep: number,
 ) => {
     try {
-        const currentStepQuestions = questions.filter((q) => q.question.step === currentStep + 1);
+        const currentStepQuestions = questions.filter((q) => q.rawData.step === currentStep + 1);
 
         if (!currentStepQuestions.length) {
             console.warn(`No questions found for step ${currentStep + 1}`);
@@ -20,7 +20,7 @@ export const validateFormData = (
 
         const stepFieldNames = new Set<string>();
         currentStepQuestions.forEach((q) => {
-            const { questionParameter, dynamicField } = q.question;
+            const { questionParameter, dynamicField } = q.rawData;
             if (questionParameter) stepFieldNames.add(questionParameter);
 
             if (dynamicField && Array.isArray(dynamicField)) {

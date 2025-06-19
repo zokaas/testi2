@@ -4,13 +4,9 @@ import tailwindcss from "@tailwindcss/vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-  plugins: [
-    reactRouter(), // Changed from remix()
-    tsconfigPaths(),
-    tailwindcss(),
-  ],
-  envPrefix: ["VITE_", "PUBLIC_"],
-  server: {
-    port: 5000,
-  },
+    plugins: [reactRouter(), tsconfigPaths(), tailwindcss()],
+    envPrefix: ["VITE_", "PUBLIC_"],
+    server: {
+        port: 5000,
+    },
 });
