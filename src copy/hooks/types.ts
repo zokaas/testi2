@@ -1,0 +1,41 @@
+import { T_AttachmentFileObject } from "../types/general";
+
+export type T_FormFields = {
+    organizationNumber: string;
+    loanAmount: string;
+    repaymentPeriod: string;
+    loanPurpose: string;
+    loanPurposeDescription: string;
+    campaignCode: string;
+    businessSector: string;
+    streetAddress: string;
+    zipCode: string;
+    city: string;
+    disburismentAccount: string;
+    applicantName: string;
+    ssn: string;
+    emailAddress: string;
+    applicantPhone: string;
+    PEP: string;
+    businessCheck: boolean;
+    allowMarketing: boolean;
+    guarantorName: string;
+    guarantorEmail: string;
+    guarantorPhone: string;
+    selfGuarantor: boolean;
+    otherAsFirstGuarantor: boolean;
+    secondGuarantorName: string;
+    secondGuarantorEmail: string;
+    secondGuarantorPhone: string;
+    attachments: null | T_AttachmentFileObject[];
+    applicationUuid: string;
+    businessId: string;
+    source: string;
+    companyName: string;
+    invoiceDueDate: number;
+    guarantorInfoBlockError: boolean;
+};
+export type T_Error = {
+    name: string;
+    message: string | null;
+};
